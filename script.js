@@ -76,7 +76,7 @@ function newGame(game) {
 
 function setupSource() {
   // TODO set up my own dang CORS proxy
-  const source = new EventSource('https://cors-anywhere.herokuapp.com/www.blaseball.com/events/streamGameData');
+  const source = new EventSource('https://cors-anywhere.herokuapp.com/https://www.blaseball.com/events/streamGameData');
 
   source.addEventListener('message', (e) => {
     const data = JSON.parse(e.data).value;
