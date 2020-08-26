@@ -110,7 +110,15 @@ function setupSource() {
         gameElement.querySelector('.away').classList.add(game.awayScore > game.homeScore ? 'winner' : 'loser');
         gameElement.querySelector('.home').classList.add(game.awayScore < game.homeScore ? 'winner' : 'loser');
       } else {
-        overview.textContent = `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
+        if (game.shame) {
+          overview.classList.add('shame');
+          overview.textContent = 'SHAME';
+          if (game.inning > 8) {
+            overview.textContent += `/${game.inning + 1}`;
+          }
+        } else {
+          overview.textContent = `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
+        }
 
         gameElement.querySelector('.outs').textContent = outs(game.halfInningOuts);
       }
