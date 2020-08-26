@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blaseball Scoreboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <template id="template-game">
+            <div class="game">
+                <div class="score">
+                    <div class="overview active"></div>
+                    <div class="teams">
+                        <div class="team away">
+                            <div class="emoji"></div>
+                            <abbr></abbr>
+                            <div class="score"></div>
+                            <svg class="arrow" viewBox="0 0 14.142 28.284" preserveAspectRatio="xMaxYMin meet">
+                                <path d="M14.142 0L0 14.142l14.142 14.142z" />
+                            </svg>
+                        </div>
+                        <div class="team home">
+                            <div class="emoji"></div>
+                            <abbr></abbr>
+                            <div class="score"></div>
+                            <svg class="arrow" viewBox="0 0 14.142 28.284" preserveAspectRatio="xMaxYMin meet">
+                                <path d="M14.142 0L0 14.142l14.142 14.142z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="bases">
+                    <svg viewBox="0 0 16.613 12.372">
+                        <path class="first" d="M 12.55,4.772 16.085,8.307 12.55,11.843 9.014,8.307 Z" />
+                        <path class="second" d="M 8.307,0.53 11.843,4.065 8.307,7.6 4.772,4.065 Z" />
+                        <path class="third" d="M 4.065,4.772 7.599,8.307 4.064,11.843 0.529,8.307 Z" />
+                    </svg>
+                    <div class="outs"></div>
+                </div>
+            </div>
+        </template>
+        <script src="script.js"></script>
+        <noscript>JavaScript is required.</noscript>
+    </body>
+</html>

@@ -1,0 +1,150 @@
+:root {
+    --bg: #fff;
+    --text: #000;
+    --border: #aaa;
+    --active-game: #a00;
+    --shame: #a0a;
+    --loser: #666;
+    --base: #00a;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000;
+        --text: #eee;
+        --border: #777;
+        --active-game: #f55;
+        --shame: #f5f;
+        --loser: #aaa;
+        --base: #eee;
+    }
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    margin: 0.3em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game {
+    border: 1px solid var(--border);
+    width: 12em;
+    padding: 0.6em;
+    margin: 0.3em;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: sans-serif;
+    line-height: 1.3;
+    display: flex;
+}
+
+.game.complete {
+    order: 2;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-right: 0.5em;
+}
+
+.overview {
+    padding-bottom: 0.5em;
+}
+
+.overview.active {
+    color: var(--active-game);
+}
+
+.overview.shame {
+    color: var(--shame);
+}
+
+.team {
+    display: flex;
+}
+
+.team.away {
+    margin-bottom: 0.25em;
+}
+
+.arrow {
+    display: none;
+}
+
+.winner .arrow {
+    display: block;
+    height: 14.3px;
+    width: 1.1em;
+    margin-right: -1.1em;
+}
+
+.winner .arrow path {
+    fill: var(--text);
+}
+
+.team.loser {
+    color: var(--loser);
+}
+
+.team .emoji {
+    font-size: 14.3px;
+    line-height: 1;
+    padding-right: 0.5em;
+}
+
+.team abbr {
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.team .score {
+    text-align: right;
+    padding-right: 0;
+}
+
+.bases {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    border-left: 1px dotted var(--border);
+    padding-left: 0.5em;
+}
+
+.game.complete .bases {
+    display: none;
+}
+
+.bases svg {
+    width: 3.25em;
+    margin-bottom: 0.25em;
+}
+
+.bases path {
+    fill: none;
+    stroke: var(--base);
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+
+.outs {
+    font-size: 9px;
+    text-align: center;
+}
+
+.bases[data-first="true"] path.first {
+    fill: var(--base);
+}
+
+.bases[data-second="true"] path.second {
+    fill: var(--base);
+}
+
+.bases[data-third="true"] path.third {
+    fill: var(--base);
+}
