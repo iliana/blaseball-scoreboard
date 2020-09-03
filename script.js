@@ -110,10 +110,7 @@ function setupSource() {
       } else {
         if (game.shame) {
           overview.classList.add('shame');
-          overview.textContent = 'SHAME';
-          if (game.inning > 8) {
-            overview.textContent += `/${game.inning + 1}`;
-          }
+          overview.textContent = `SHAME/${game.inning + 1}`;
         } else {
           overview.textContent = `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
         }
