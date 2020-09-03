@@ -95,6 +95,7 @@ body {
 .team .emoji {
     font-size: 14.3px;
     line-height: 1;
+    width: 14.3px;
     padding-right: 0.5em;
 }
 

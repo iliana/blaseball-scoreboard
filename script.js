@@ -57,10 +57,15 @@ const shorthand = {
   '57ec08cc-0411-4643-b304-0e80dbc15ac7': 'MEX',
 };
 
-function newGame(game) {
+function cloneTemplate() {
   const clone = document.body.querySelector('#template-game').content.cloneNode(true);
   const gameElement = clone.querySelector('.game');
+  document.body.append(clone);
+  return gameElement;
+}
 
+function newGame(game) {
+  const gameElement = cloneTemplate();
   gameElement.dataset.id = game.id;
 
   ['away', 'home'].forEach((team) => {
@@ -70,7 +75,6 @@ function newGame(game) {
     abbr.textContent = shorthand[game[`${team}Team`]];
   });
 
-  document.body.append(clone);
   return gameElement;
 }
 
@@ -82,7 +86,7 @@ function setupSource() {
     const gameIds = schedule.map((g) => g.id);
 
     document.body.querySelectorAll('.game').forEach((gameElement) => {
-      if (gameElement.dataset.id && !gameIds.includes(gameElement.dataset.id)) {
+      if (!gameIds.includes(gameElement.dataset.id)) {
         gameElement.remove();
       }
     });
@@ -135,4 +139,10 @@ function setupSource() {
   });
 }
 
-setupSource();
+document.addEventListener('DOMContentLoaded', () => {
+  'LOADING...'.split('').forEach((c) => {
+    const element = cloneTemplate();
+    element.querySelector('.away abbr').textContent = c;
+  });
+  setupSource();
+});
