@@ -28,29 +28,61 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.game {
-    border: 1px solid var(--border);
-    width: 12em;
-    padding: 0.6em;
-    margin: 0.3em;
     font-size: 11px;
     font-weight: bold;
     font-family: sans-serif;
     line-height: 1.3;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+header p {
+    margin: .5em 0;
+}
+
+header a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header .season, header .day {
+    display: inline-block;
+    background-color: var(--text);
+    color: var(--bg);
+    min-width: 2.75ch;
+    text-align: center;
+}
+
+header .day {
+    min-width: 3.75ch;
+}
+
+.game {
+    border: 1px solid var(--border);
+    width: 11em;
+    padding: 0.6em;
+    margin: 0.3em;
     display: flex;
+    flex-direction: column;
 }
 
 .game.complete {
     order: 2;
 }
 
-.score {
+.top, .bottom {
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding-right: 0.5em;
+}
+
+.top {
+    justify-content: space-between;
 }
 
 .overview {
@@ -63,6 +95,18 @@ body {
 
 .overview.shame {
     color: var(--shame);
+}
+
+.extra {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-right: 0.5em;
 }
 
 .team {
@@ -122,8 +166,8 @@ body {
 }
 
 .bases svg {
-    width: 3.25em;
-    margin-bottom: 0.25em;
+    height: 1.75em;
+    margin-bottom: 0.125em;
 }
 
 .bases path {
@@ -134,7 +178,7 @@ body {
 }
 
 .outs {
-    font-size: 9px;
+    font-size: 8px;
     text-align: center;
 }
 

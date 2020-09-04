@@ -24,13 +24,6 @@ function ordinal(i) {
   return `${i}th`;
 }
 
-function outs(n) {
-  if (n === 1) {
-    return '1 Out';
-  }
-  return `${n} Outs`;
-}
-
 // We could get the shorthands from the allTeams endpoint but honestly the
 // canonical shorthands are kind of bad and if we don't like them we might as
 // well save a request.
@@ -82,7 +75,12 @@ function setupSource() {
   const source = new EventSource('https://cors-proxy.blaseball-reference.com/events/streamData');
 
   source.addEventListener('message', (e) => {
-    const schedule = JSON.parse(e.data).value.games.schedule.sort(compareGames);
+    const event = JSON.parse(e.data).value.games;
+
+    document.querySelector('header .season').textContent = event.sim.season;
+    document.querySelector('header .day').textContent = event.sim.day;
+
+    const schedule = event.schedule.sort(compareGames);
     const gameIds = schedule.map((g) => g.id);
 
     document.body.querySelectorAll('.game').forEach((gameElement) => {
@@ -119,7 +117,7 @@ function setupSource() {
           overview.textContent = `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
         }
 
-        gameElement.querySelector('.outs').textContent = outs(game.halfInningOuts);
+        gameElement.querySelector('.outs').textContent = `${game.halfInningOuts} Out`;
       }
 
       ['away', 'home'].forEach((team) => {
