@@ -77,8 +77,8 @@ function setupSource() {
   source.addEventListener('message', (e) => {
     const event = JSON.parse(e.data).value.games;
 
-    document.querySelector('header .season').textContent = event.sim.season;
-    document.querySelector('header .day').textContent = event.sim.day;
+    document.querySelector('header .season').textContent = event.sim.season + 1;
+    document.querySelector('header .day').textContent = event.sim.day + 1;
 
     const schedule = event.schedule.sort(compareGames);
     const gameIds = schedule.map((g) => g.id);
