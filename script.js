@@ -133,7 +133,7 @@ function setupSource() {
 
   source.addEventListener('error', () => {
     source.close();
-    setupSource();
+    setTimeout(setupSource, 2000);
   });
 }
 
