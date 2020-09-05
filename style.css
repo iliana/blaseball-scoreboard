@@ -76,7 +76,7 @@ header .day {
 .game {
     border: 1px solid var(--border);
     width: 11em;
-    padding: 0.6em;
+    padding: 0.6em 1.1em;
     margin: 0.3em;
     display: flex;
     flex-direction: column;
@@ -111,15 +111,10 @@ body.postseason .game {
     font-weight: normal;
 }
 
-.game.complete .extra {
-    padding-right: 0.5em;
-}
-
 .score {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding-right: 0.5em;
 }
 
 .team {
@@ -172,6 +167,7 @@ body.postseason .game {
     align-self: flex-end;
     border-left: 1px dotted var(--border);
     padding-left: 0.5em;
+    margin-left: 0.5em;
 }
 
 .game.complete .bases {
