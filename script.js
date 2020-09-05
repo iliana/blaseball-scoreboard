@@ -76,8 +76,9 @@ function setupSource() {
 
   source.addEventListener('message', (e) => {
     const event = JSON.parse(e.data).value.games;
+    const postseason = Object.keys(event.postseason).length > 0;
 
-    if (Object.keys(event.postseason).length) {
+    if (postseason) {
       document.body.classList.add('postseason');
       document.querySelector('header.postseason .season').textContent = event.sim.season + 1;
       document.querySelector('header.postseason .gameindex').textContent = event.postseason.round.gameIndex + 1;
@@ -142,7 +143,7 @@ function setupSource() {
         gameElement.querySelector('.outs').textContent = `${game.halfInningOuts} Out`;
       }
 
-      if (Object.keys(event.postseason).length) {
+      if (postseason) {
         const matchup = event.postseason.matchups
           .find((m) => [game.awayTeam, game.homeTeam].includes(m.awayTeam));
         const extra = gameElement.querySelector('.extra');
@@ -151,9 +152,12 @@ function setupSource() {
         } else {
           const leader = (matchup.awayWins > matchup.homeWins)
             ? shorthand[matchup.awayTeam] : shorthand[matchup.homeTeam];
-          const leadWins = Math.max(matchup.awayWins, matchup.homeWins);
-          const word = leadWins >= 3 ? 'wins' : 'leads';
-          extra.textContent = `${leader} ${word} ${leadWins}\u2013${Math.min(matchup.awayWins, matchup.homeWins)}`;
+          const awayWins = (game.awayTeam === matchup.awayTeam)
+            ? matchup.awayWins : matchup.homeWins;
+          const homeWins = (game.awayTeam === matchup.awayTeam)
+            ? matchup.homeWins : matchup.awayWins;
+          const word = Math.max(awayWins, homeWins) >= 3 ? 'wins' : 'leads';
+          extra.textContent = `${leader} ${word} ${awayWins}\u2013${homeWins}`;
         }
       }
 
