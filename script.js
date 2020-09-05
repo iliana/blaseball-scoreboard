@@ -51,7 +51,7 @@ const shorthand = {
 };
 
 function cloneTemplate() {
-  const clone = document.body.querySelector('#template-game').content.cloneNode(true);
+  const clone = document.querySelector('#template-game').content.cloneNode(true);
   const gameElement = clone.querySelector('.game');
   document.body.append(clone);
   return gameElement;
@@ -77,20 +77,42 @@ function setupSource() {
   source.addEventListener('message', (e) => {
     const event = JSON.parse(e.data).value.games;
 
-    document.querySelector('header .season').textContent = event.sim.season + 1;
-    document.querySelector('header .day').textContent = event.sim.day + 1;
+    if (Object.keys(event.postseason).length) {
+      document.body.classList.add('postseason');
+      document.querySelector('header.postseason .season').textContent = event.sim.season + 1;
+      document.querySelector('header.postseason .gameindex').textContent = event.postseason.round.gameIndex + 1;
+
+      const phase = document.querySelector('header.postseason .phase');
+      switch (event.postseason.round.roundNumber) {
+        case 0:
+          phase.textContent = 'Round 1';
+          break;
+        case 1:
+          phase.textContent = 'League Championships';
+          break;
+        case 2:
+          phase.textContent = 'Internet Series';
+          break;
+        default:
+          phase.textContent = '';
+      }
+    } else {
+      document.body.classList.remove('postseason');
+      document.querySelector('header.regular .season').textContent = event.sim.season + 1;
+      document.querySelector('header.regular .day').textContent = event.sim.day + 1;
+    }
 
     const schedule = event.schedule.sort(compareGames);
     const gameIds = schedule.map((g) => g.id);
 
-    document.body.querySelectorAll('.game').forEach((gameElement) => {
+    document.querySelectorAll('.game').forEach((gameElement) => {
       if (!gameIds.includes(gameElement.dataset.id)) {
         gameElement.remove();
       }
     });
 
     schedule.forEach((game) => {
-      const gameElement = document.body.querySelector(`.game[data-id="${game.id}"]`) ?? newGame(game);
+      const gameElement = document.querySelector(`.game[data-id="${game.id}"]`) ?? newGame(game);
       if (game.gameComplete) {
         gameElement.classList.add('complete');
       }

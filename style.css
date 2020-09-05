@@ -49,7 +49,19 @@ header a:hover {
     text-decoration: underline;
 }
 
-header .season, header .day {
+body header.postseason {
+    display: none;
+}
+
+body.postseason header.regular {
+    display: none;
+}
+
+body.postseason header.postseason {
+    display: block;
+}
+
+header .season, header .day, header .gameindex {
     display: inline-block;
     background-color: var(--text);
     color: var(--bg);
