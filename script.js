@@ -121,11 +121,12 @@ function setupSource() {
         gameElement.querySelector('.away').classList.add(game.awayScore > game.homeScore ? 'winner' : 'loser');
         gameElement.querySelector('.home').classList.add(game.awayScore < game.homeScore ? 'winner' : 'loser');
       } else {
+        overview.textContent = game.topOfInning ? '\u25b2 ' : '\u25bc ';
         if (game.shame) {
           overview.classList.add('shame');
-          overview.textContent = `SHAME/${game.inning + 1}`;
+          overview.textContent += `SHAME/${game.inning + 1}`;
         } else {
-          overview.textContent = `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
+          overview.textContent += `${game.topOfInning ? 'Top' : 'Bot'} ${ordinal(game.inning + 1)}`;
         }
 
         gameElement.querySelector('.outs').textContent = `${game.halfInningOuts} Out`;
