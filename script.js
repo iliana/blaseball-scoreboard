@@ -142,6 +142,19 @@ function setupSource() {
         gameElement.querySelector('.outs').textContent = `${game.halfInningOuts} Out`;
       }
 
+      if (Object.keys(event.postseason).length) {
+        const matchup = event.postseason.matchups
+          .find((m) => [game.awayTeam, game.homeTeam].includes(m.awayTeam));
+        const extra = gameElement.querySelector('.extra');
+        if (matchup.awayWins > matchup.homeWins) {
+          extra.textContent = `${shorthand[matchup.awayTeam]} leads ${matchup.awayWins}\u2013${matchup.homeWins}`;
+        } else if (matchup.awayWins < matchup.homeWins) {
+          extra.textContent = `${shorthand[matchup.homeTeam]} leads ${matchup.homeWins}\u2013${matchup.awayWins}`;
+        } else {
+          extra.textContent = `Series tied ${matchup.awayWins}\u2013${matchup.homeWins}`;
+        }
+      }
+
       ['away', 'home'].forEach((team) => {
         gameElement.querySelector(`.${team} .score`).textContent = game[`${team}Score`];
       });

@@ -82,6 +82,10 @@ header .day {
     flex-direction: column;
 }
 
+body.postseason .game {
+    width: 17.875em;
+}
+
 .top, .bottom {
     display: flex;
 }
