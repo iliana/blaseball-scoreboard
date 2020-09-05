@@ -166,8 +166,8 @@ body.postseason .game {
     flex-direction: column;
     align-self: flex-end;
     border-left: 1px dotted var(--border);
-    padding-left: 0.5em;
-    margin-left: 0.5em;
+    padding-left: 1em;
+    margin-left: 1em;
 }
 
 .game.complete .bases {
