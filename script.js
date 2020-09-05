@@ -1,28 +1,4 @@
-function compareGames(a, b) {
-  if (!a.gameComplete && b.gameComplete) { return -1; }
-  if (a.gameComplete && !b.gameComplete) { return 1; }
-
-  if (a.id < b.id) { return -1; }
-  if (a.id > b.id) { return 1; }
-
-  return 0;
-}
-
-function ordinal(i) {
-  const j = i % 10;
-  const k = i % 100;
-
-  if (j === 1 && k !== 11) {
-    return `${i}st`;
-  }
-  if (j === 2 && k !== 12) {
-    return `${i}nd`;
-  }
-  if (j === 3 && k !== 13) {
-    return `${i}rd`;
-  }
-  return `${i}th`;
-}
+const roundNames = ['Postseason Round 1', 'League Championships', 'Internet Series'];
 
 // We could get the shorthands from the allTeams endpoint but honestly the
 // canonical shorthands are kind of bad and if we don't like them we might as
@@ -49,6 +25,32 @@ const shorthand = {
   '747b8e4a-7e50-4638-a973-ea7950a3e739': 'HAD',
   '57ec08cc-0411-4643-b304-0e80dbc15ac7': 'MEX',
 };
+
+function compareGames(a, b) {
+  if (!a.gameComplete && b.gameComplete) { return -1; }
+  if (a.gameComplete && !b.gameComplete) { return 1; }
+
+  if (a.id < b.id) { return -1; }
+  if (a.id > b.id) { return 1; }
+
+  return 0;
+}
+
+function ordinal(i) {
+  const j = i % 10;
+  const k = i % 100;
+
+  if (j === 1 && k !== 11) {
+    return `${i}st`;
+  }
+  if (j === 2 && k !== 12) {
+    return `${i}nd`;
+  }
+  if (j === 3 && k !== 13) {
+    return `${i}rd`;
+  }
+  return `${i}th`;
+}
 
 function cloneTemplate() {
   const clone = document.querySelector('#template-game').content.cloneNode(true);
@@ -82,21 +84,7 @@ function setupSource() {
       document.body.classList.add('postseason');
       document.querySelector('header.postseason .season').textContent = event.sim.season + 1;
       document.querySelector('header.postseason .gameindex').textContent = event.postseason.round.gameIndex + 1;
-
-      const phase = document.querySelector('header.postseason .phase');
-      switch (event.postseason.round.roundNumber) {
-        case 0:
-          phase.textContent = 'Round 1';
-          break;
-        case 1:
-          phase.textContent = 'League Championships';
-          break;
-        case 2:
-          phase.textContent = 'Internet Series';
-          break;
-        default:
-          phase.textContent = '';
-      }
+      document.querySelector('header.postseason .phase').textContent = roundNames[event.postseason.round.roundNumber];
     } else {
       document.body.classList.remove('postseason');
       document.querySelector('header.regular .season').textContent = event.sim.season + 1;
