@@ -70,10 +70,6 @@ header .day {
     flex-direction: column;
 }
 
-.game.complete {
-    order: 2;
-}
-
 .top, .bottom {
     display: flex;
 }
