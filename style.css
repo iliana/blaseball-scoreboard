@@ -156,6 +156,7 @@ body.postseason .game {
 
 .team .seed {
     display: none;
+    text-align: right;
     width: 1ch;
     padding-right: 1ch;
     font-size: 9px;
