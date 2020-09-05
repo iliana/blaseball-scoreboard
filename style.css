@@ -111,6 +111,10 @@ body.postseason .game {
     font-weight: normal;
 }
 
+.game.complete .extra {
+    padding-right: 0.5em;
+}
+
 .score {
     display: flex;
     flex-direction: column;
