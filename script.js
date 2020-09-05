@@ -64,7 +64,7 @@ function newGame(game) {
   gameElement.dataset.id = game.id;
 
   ['away', 'home'].forEach((team) => {
-    gameElement.querySelector(`.${team} .emoji`).textContent = String.fromCodePoint(parseInt(game[`${team}TeamEmoji`], 16));
+    gameElement.querySelector(`.${team} .emoji`).textContent = String.fromCodePoint(game[`${team}TeamEmoji`]);
     const abbr = gameElement.querySelector(`.${team} abbr`);
     abbr.setAttribute('title', game[`${team}TeamName`]);
     abbr.textContent = shorthand[game[`${team}Team`]];
