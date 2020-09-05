@@ -119,6 +119,7 @@ body.postseason .game {
 
 .team {
     display: flex;
+    align-items: baseline;
 }
 
 .team.away {
@@ -149,6 +150,20 @@ body.postseason .game {
     line-height: 1;
     width: 14.3px;
     padding-right: 0.5em;
+    align-self: center;
+}
+
+.team .seed {
+    display: none;
+    width: 1ch;
+    padding-right: 1ch;
+    font-size: 9px;
+    color: var(--loser);
+    font-weight: normal;
+}
+
+body.postseason .team .seed {
+    display: block;
 }
 
 .team abbr {

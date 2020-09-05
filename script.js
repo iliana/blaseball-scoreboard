@@ -134,16 +134,20 @@ function setupSource() {
       if (postseason) {
         const matchup = event.postseason.matchups
           .find((m) => [game.awayTeam, game.homeTeam].includes(m.awayTeam));
+        const flipped = game.awayTeam !== matchup.awayTeam;
+
+        [['away', 'home'], ['home', 'away']].forEach(([team, other]) => {
+          gameElement.querySelector(`.${team} .seed`).textContent = (flipped ? matchup[`${other}Seed`] : matchup[`${team}Seed`]) + 1;
+        });
+
         const extra = gameElement.querySelector('.extra');
         if (matchup.awayWins === matchup.homeWins) {
           extra.textContent = `Series tied ${matchup.awayWins}\u2013${matchup.homeWins}`;
         } else {
           const leader = (matchup.awayWins > matchup.homeWins)
             ? shorthand[matchup.awayTeam] : shorthand[matchup.homeTeam];
-          const awayWins = (game.awayTeam === matchup.awayTeam)
-            ? matchup.awayWins : matchup.homeWins;
-          const homeWins = (game.awayTeam === matchup.awayTeam)
-            ? matchup.homeWins : matchup.awayWins;
+          const awayWins = flipped ? matchup.homeWins : matchup.awayWins;
+          const homeWins = flipped ? matchup.awayWins : matchup.homeWins;
           const word = Math.max(awayWins, homeWins) >= 3 ? 'wins' : 'leads';
           extra.textContent = `${leader} ${word} ${awayWins}\u2013${homeWins}`;
         }
