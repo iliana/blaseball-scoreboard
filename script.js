@@ -141,7 +141,7 @@ function setupSource() {
           gameElement.querySelector(`.${team} .seed`).textContent = (flipped ? matchup[`${other}Seed`] : matchup[`${team}Seed`]) + 1;
         });
 
-        if (matchup.awayWins > 0 && matchup.homeWins > 0) {
+        if (matchup.awayWins > 0 || matchup.homeWins > 0) {
           const extra = gameElement.querySelector('.extra');
           if (matchup.awayWins === matchup.homeWins) {
             extra.textContent = `Series tied ${matchup.awayWins}\u2013${matchup.homeWins}`;
