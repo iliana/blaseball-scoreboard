@@ -219,3 +219,15 @@ body.postseason .team .seed {
 .bases[data-third="true"] path.third {
     fill: var(--base);
 }
+
+.bases[data-fourth="true"] path.fourth {
+    fill: var(--base);
+}
+
+.bases[data-has-fourth="false"] path.fourth {
+    display: none;
+}
+
+.bases[data-has-fourth="false"] svg {
+    margin-right: 0.5em;
+}
