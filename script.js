@@ -161,9 +161,10 @@ function setupSource() {
       });
 
       const bases = gameElement.querySelector('.bases');
-      [['first', 0], ['second', 1], ['third', 2]].forEach(([base, baseId]) => {
+      [['first', 0], ['second', 1], ['third', 2], ['fourth', 3]].forEach(([base, baseId]) => {
         bases.dataset[base] = game.basesOccupied.includes(baseId) ? 'true' : 'false';
       });
+      bases.dataset['hasFourth'] = '' + (4 === (game.topOfInning ? game.homeBases : game.awayBases));
     });
   });
 
