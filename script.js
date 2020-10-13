@@ -164,7 +164,7 @@ function setupSource() {
       [['first', 0], ['second', 1], ['third', 2], ['fourth', 3]].forEach(([base, baseId]) => {
         bases.dataset[base] = game.basesOccupied.includes(baseId) ? 'true' : 'false';
       });
-      bases.dataset['hasFourth'] = '' + (4 === (game.topOfInning ? game.homeBases : game.awayBases));
+      bases.dataset['hasFourth'] = '' + (5 === (game.topOfInning ? game.awayBases : game.homeBases));
     });
   });
 
