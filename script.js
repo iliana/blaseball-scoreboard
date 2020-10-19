@@ -4,7 +4,7 @@ const roundNames = ['Postseason Round 1', 'League Championships', 'Internet Seri
 // canonical shorthands are kind of bad and if we don't like them we might as
 // well save a request.
 const shorthand = {
-  'adc5b394-8f76-416d-9ce9-813706877b84': 'KC',
+  'adc5b394-8f76-416d-9ce9-813706877b84': 'KCBM',
   '8d87c468-699a-47a8-b40d-cfb73a5660ad': 'BAL',
   'b63be8c2-576a-4d6e-8daf-814f8bcea96f': 'MIA',
   'ca3f1c8c-c025-4d8e-8eef-5be6accbeb16': 'CHI',
@@ -23,7 +23,8 @@ const shorthand = {
   'f02aeae2-5e6a-4098-9842-02d2273f25c7': 'HELL',
   '878c1bf6-0d21-4659-bfee-916c8314d69c': 'TACO',
   '747b8e4a-7e50-4638-a973-ea7950a3e739': 'HAD',
-  '57ec08cc-0411-4643-b304-0e80dbc15ac7': 'MEX',
+  '57ec08cc-0411-4643-b304-0e80dbc15ac7': 'CDMX',
+  'c73b705c-40ad-4633-a6ed-d357ee2e2bcf': 'TYO',
 };
 
 function compareGames(a, b) {
@@ -59,12 +60,17 @@ function cloneTemplate() {
   return gameElement;
 }
 
+function emoji(e) {
+  const n = Number(e);
+  return isNaN(n) ? e : String.fromCodePoint(n);
+}
+
 function newGame(game) {
   const gameElement = cloneTemplate();
   gameElement.dataset.id = game.id;
 
   ['away', 'home'].forEach((team) => {
-    gameElement.querySelector(`.${team} .emoji`).textContent = String.fromCodePoint(game[`${team}TeamEmoji`]);
+    gameElement.querySelector(`.${team} .emoji`).textContent = emoji(game[`${team}TeamEmoji`]);
     const abbr = gameElement.querySelector(`.${team} abbr`);
     abbr.setAttribute('title', game[`${team}TeamName`]);
     abbr.textContent = shorthand[game[`${team}Team`]];
@@ -84,7 +90,7 @@ function setupSource() {
       document.body.classList.add('postseason');
       document.querySelector('header.postseason .season').textContent = event.sim.season + 1;
       document.querySelector('header.postseason .gameindex').textContent = event.postseason.round.gameIndex + 1;
-      document.querySelector('header.postseason .phase').textContent = roundNames[event.postseason.round.roundNumber];
+      document.querySelector('header.postseason .phase').textContent = event.postseason.round.name;
     } else {
       document.body.classList.remove('postseason');
       document.querySelector('header.regular .season').textContent = event.sim.season + 1;
