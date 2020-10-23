@@ -1,5 +1,3 @@
-const roundNames = ['Postseason Round 1', 'League Championships', 'Internet Series'];
-
 // We could get the shorthands from the allTeams endpoint but honestly the
 // canonical shorthands are kind of bad and if we don't like them we might as
 // well save a request.
@@ -62,7 +60,7 @@ function cloneTemplate() {
 
 function emoji(e) {
   const n = Number(e);
-  return isNaN(n) ? e : String.fromCodePoint(n);
+  return Number.isNaN(n) ? e : String.fromCodePoint(n);
 }
 
 function newGame(game) {
@@ -170,7 +168,7 @@ function setupSource() {
       [['first', 0], ['second', 1], ['third', 2], ['fourth', 3]].forEach(([base, baseId]) => {
         bases.dataset[base] = game.basesOccupied.includes(baseId) ? 'true' : 'false';
       });
-      bases.dataset['hasFourth'] = '' + (5 === (game.topOfInning ? game.awayBases : game.homeBases));
+      bases.dataset.hasFourth = `${(game.topOfInning ? game.awayBases : game.homeBases) === 5}`;
     });
   });
 
