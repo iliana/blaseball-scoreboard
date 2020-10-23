@@ -175,6 +175,7 @@ body.postseason .team .seed {
 
 .team .score {
     text-align: right;
+    margin-left: 1ch;
     padding-right: 0;
 }
 
@@ -229,5 +230,5 @@ body.postseason .team .seed {
 }
 
 .bases[data-has-fourth="false"] svg {
-    margin-right: 0.5em;
+    margin-left: -0.5em;
 }
