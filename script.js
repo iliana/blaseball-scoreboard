@@ -156,7 +156,7 @@ function setupSource() {
               ? shorthand[matchup.awayTeam] : shorthand[matchup.homeTeam];
             const awayWins = flipped ? matchup.homeWins : matchup.awayWins;
             const homeWins = flipped ? matchup.awayWins : matchup.homeWins;
-            const word = Math.max(awayWins, homeWins) >= game.gamesNeeded ? 'wins' : 'leads';
+            const word = Math.max(awayWins, homeWins) >= game.gamesNeeded && awayWins !== homeWins ? 'wins' : 'leads';
             extra.textContent = `${leader} ${word} ${awayWins}\u2013${homeWins}`;
           }
         }
