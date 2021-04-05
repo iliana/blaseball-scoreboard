@@ -23,6 +23,9 @@ const shorthand = {
   '747b8e4a-7e50-4638-a973-ea7950a3e739': 'HAD',
   '57ec08cc-0411-4643-b304-0e80dbc15ac7': 'CDMX',
   'c73b705c-40ad-4633-a6ed-d357ee2e2bcf': 'TYO',
+  'bb4a9de5-c924-4923-a0cb-9d1445f1ee5d': 'OHIO',
+  'd9f89a8a-c563-493e-9d64-78e4f9a55d4a': 'ATLS',
+  '46358869-dce9-4a01-bfba-ac24fc56f57e': 'CORE',
 };
 
 function compareGames(a, b) {
